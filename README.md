@@ -87,6 +87,6 @@ The result will be:
    
    	$('#aform').postJson();
    
-#####POST JSON to action url:
+#####PUT JSON to action url:
     
    	$('#aform').putJson();
