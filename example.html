@@ -1,0 +1,62 @@
+<html>
+<head>
+	<title>jquery-json-form-functions - Example</title>
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="jquery-json-form-functions.js"></script>
+</head>
+<body>
+	<h2>FORM DATA:</h2>
+	{ <br>
+	<form id="aForm" action="http://some-service-url">   
+    &nbsp;&nbsp;&nbsp;&nbsp;simpleAttribute: 
+    	<input type="text" name="simpleAttribute" value="123"/>,<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;listAttribute: [ 
+    	<input type="text" name="listAttribute" value="a"/>, 
+    	<input type="text" name="listAttribute" value="b"/> ],<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp;object: {<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;simpleAtrtribute: 
+   		<input type="text" name="object.simpleAtrtribute" value="456"/>,<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listAttribute: [
+   		<input type="text" name="object.listAttribute" value="c"/>,	<input type="text" name="object.listAttribute" value="d"/> ],<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nestedObject: {<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;simpleAtrtribute:
+    	<input type="text" name="object.nestedObject.simpleAtrtribute" value="789"/>,<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listAttribute: [
+    	<input type="text" name="object.nestedObject.listAttribute" value="e"/>,
+    	<input type="text" name="object.nestedObject.listAttribute" value="f"/> ]<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;},<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;objectList: [<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;simpleAtrtribute:
+	    <input type="text" name="objectList[0].simpleAtrtribute" value="101112"/>,<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listAttribute:	[    
+    	<input type="text" name="objectList[0].listAttribute" value="g"/>
+	    <input type="text" name="objectList[0].listAttribute" value="h"/> ]<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;simpleAtrtribute:
+	    <input type="text" name="objectList[1].simpleAtrtribute" value="131415"/>,<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listAttribute:	[    
+    	<input type="text" name="objectList[1].listAttribute" value="i"/>
+	    <input type="text" name="objectList[1].listAttribute" value="j"/> ]<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;]<br>
+	}
+    </form>
+    <button id="btnConvert">Run: $('#aForm').toJson()</button><br><br>
+    <div id="result">
+    	<h2>$('#aForm').toJson() Result:</h2>
+    	<span id="json-data">
+    	</span>
+	</div>
+
+	<script type="text/javascript">
+		$('#result').hide();
+		$('#btnConvert').click(function() {
+			$('#json-data').text(JSON.stringify($('#aForm').toJson()));
+			$('#result').show();
+		});
+	</script>
+</body>
+</html>
