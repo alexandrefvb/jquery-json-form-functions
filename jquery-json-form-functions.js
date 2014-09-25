@@ -15,7 +15,7 @@
  * 
  * Conversion rules:
  * 
- * - All inputs on form that have a name attribute will be added to the json.
+ * - All inputs (input, textarea or select) on form that have a name attribute will be added to the json.
  * - The name attribute defines which property of json will be populated.
  * - Nested objects with multiple levels of attributes can be created using dots "." to specify nested properties.
  * - Arrays of values can be created using the same name in more than one input on same form.
@@ -125,7 +125,7 @@ $.fn.toJson = function() {
 		return root;
 	}
 	var root = {};
-	jqForm.children().each(function(i, elm) {
+	jqForm.find('input,textarea,select').each(function(i, elm) {
 		var jqElm = $(elm);
 		var fqn = jqElm.attr('name');
 		if (fqn) {
