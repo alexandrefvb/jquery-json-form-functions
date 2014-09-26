@@ -23,12 +23,15 @@ This script adds three utility functions to jQuery to convert form data to json 
   
 ### Conversion rules:
 
-  - All inputs on form that have a name attribute will be added to the json.
-  - The name attribute defines which property of json will be populated.
+  - All inputs on form that have a name attribute will be added to the JSON.
+  - The name attribute defines which property of JSON will be populated.
   - Nested objects with multiple levels of attributes can be created using dots "." to specify nested properties.
   - Arrays of values can be created using the same name in more than one input on same form.
   - To create arrays of objects indexes must be used to determine which object of list will hold input value.
-  
+  - Inputs with empty values are ommitted on JSON.
+  - For checkboxes and radio buttons just "checked" values are added to JSON.
+  - Any input with class "json-form-array" will be converted to an array in JSON. This feature can be used in selects with multiple selection and checkboxes to force array representation even if just one option was selected.
+    
 
 ### Full example:
 
@@ -36,6 +39,7 @@ This script adds three utility functions to jQuery to convert form data to json 
 
 	<form id="aForm" action="http://some-service-url">   
     	<input type="hidden" name="simpleAttribute" value="123"/>
+
     	<input type="text" name="listAttribute" value="a"/>
     	<input type="text" name="listAttribute" value="b"/>
       
@@ -52,6 +56,30 @@ This script adds three utility functions to jQuery to convert form data to json 
     	<input type="text" name="objectList[1].simpleAtrtribute" value="131515"/>
 	    <input type="text" name="objectList[1].listAttribute" value="i"/>
     	<input type="text" name="objectList[1].listAttribute" value="j"/>
+
+        <input type="hidden" name="ignoredAttribute" value=""/>
+
+        <input type="hidden" name="forcedArrayAttribute" value="x" class="json-form-array"/>
+
+        <input type="checkbox" name="checkboxField" value="Value 1" class="json-form-array" checked="checked"/> 
+        <input type="checkbox" name="checkboxField" value="Value 2" /> 
+        <input type="checkbox" name="checkboxField" value="Value 3" />
+        
+        <input type="radio" name="radioField" value="Value 1" checked="checked"/>
+        <input type="radio" name="radioField" value="Value 2"/>
+        <input type="radio" name="radioField" value="Value 3"/> 
+        
+        <select name="selectField">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C" selected="selected">C</option>
+        </select>
+        
+        <select name="multipleSelectField" multiple="multiple" class="json-form-array">
+            <option value="A" selected="selected">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+        </select>        
     </form>
 
 #####Converting to JSON:
@@ -80,7 +108,12 @@ The result will be:
   				"simpleAttribute": "131515",
   				"listAttribute": ["i", "j"],
   			}  
-  		]
+  		],
+  		"forcedArrayAttribute": ["x"],
+  		"checkboxField": ["Value 1"],
+  		"radioField": "Value 1",
+        "selectField": "C",
+        multipleSelectField: [ "A" ]   		
   	}
   
 #####POST JSON to action url:

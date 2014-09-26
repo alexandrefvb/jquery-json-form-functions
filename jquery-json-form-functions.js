@@ -20,6 +20,11 @@
  * - Nested objects with multiple levels of attributes can be created using dots "." to specify nested properties.
  * - Arrays of values can be created using the same name in more than one input on same form.
  * - To create arrays of objects indexes must be used to determine which object of list will hold input value.
+ * - Inputs with empty values are ommitted on JSON.
+ * - For checkboxes and radio buttons just "checked" values are added to JSON.
+ * - Any input with class "json-form-array" will be converted to an array in JSON. This feature can be used 
+ * 	 in selects with multiple selection and checkboxes to force array representation even if just one option 
+ *   is selected.
  * 
  * Full example:
  * 
@@ -80,7 +85,6 @@
  *   
  */
 $.fn.toJson = function() {
-	var jqForm = $(this[0]);
 	function addFieldValue(root, fqn, value) {
 		if (fqn.length == 1) {
 			if (root[fqn[0]]) {
@@ -110,7 +114,7 @@ $.fn.toJson = function() {
 				root[i] = mergeObjectArrays(root[i]);
 			}
 		} else {
-			var regex = /(.+)\[(\d)\]/;
+			var regex = /(.+)\[(\d+)\]/;
 			for ( var key in root) {
 				var match = key.match(regex);
 				if (match) {
@@ -125,19 +129,23 @@ $.fn.toJson = function() {
 		return root;
 	}
 	var root = {};
-	jqForm.find('input,textarea,select').each(function(i, elm) {
-		var jqElm = $(elm);
-		var fqn = jqElm.attr('name');
-		if (fqn) {
-			fqn = fqn.split(' ').join('').split('.');
-			addFieldValue(root, fqn, jqElm.val());
+	var serializedForm = this.serializeArray();
+	for (i in serializedForm) {
+		if (serializedForm[i].value != '') {
+			var fqn = serializedForm[i].name.split(' ').join('').split('.');
+			addFieldValue(root, fqn, serializedForm[i].value);
 		}
+	}
+	root = mergeObjectArrays(root);
+	this.find('.json-form-array').each(function (i, elm) {
+		eval('var value = root.' + elm.name + '; if (value && !$.isArray(value)) root.' 
+				+ elm.name + ' = [ root.' + elm.name +' ];');
 	});
-	return mergeObjectArrays(root);
+	return root;
 }
 
 $.fn.postJson = function() {
-	var jqForm = $(this[0]);
+	var jqForm = this;
 	var jqxhr = $.ajax({
 		type : 'POST',
 		url : jqForm.attr('action') || window.location.href,
@@ -150,7 +158,7 @@ $.fn.postJson = function() {
 }
 
 $.fn.putJson = function() {
-	var jqForm = $(this[0]);
+	var jqForm = this;
 	var jqxhr = $.ajax({
 		type : 'PUT',
 		url : jqForm.attr('action') || window.location.href,
