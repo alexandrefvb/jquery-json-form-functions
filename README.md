@@ -113,7 +113,7 @@ The result will be:
   		"checkboxField": ["Value 1"],
   		"radioField": "Value 1",
         "selectField": "C",
-        multipleSelectField: [ "A" ]   		
+        "multipleSelectField": [ "A" ]   		
   	}
   
 #####POST JSON to action url:

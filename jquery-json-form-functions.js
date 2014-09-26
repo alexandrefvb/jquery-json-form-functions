@@ -47,7 +47,30 @@
  *     <input type="text" name="objectList[1].simpleAtrtribute" value="131515"/>
  *     <input type="text" name="objectList[1].listAttribute" value="i"/>
  *     <input type="text" name="objectList[1].listAttribute" value="j"/>
- *          
+ *     
+ *     <input type="hidden" name="ignoredAttribute" value=""/>
+ *
+ *	   <input type="hidden" name="forcedArrayAttribute" value="x" class="json-form-array"/>
+ *     
+ *     <input type="checkbox" name="checkboxField" value="Value 1" class="json-form-array" checked="checked"/>
+ *     <input type="checkbox" name="checkboxField" value="Value 2" />
+ *     <input type="checkbox" name="checkboxField" value="Value 3" />
+ *     
+ *     <input type="radio" name="radioField" value="Value 1" checked="checked"/>
+ *     <input type="radio" name="radioField" value="Value 2"/>
+ *     <input type="radio" name="radioField" value="Value 3"/>
+ *     
+ *     <select name="selectField">
+ *     		<option value="A">A</option>
+ *     		<option value="B">B</option>
+ *     		<option value="C" selected="selected">C</option>
+ *     </select>
+ *     
+ *     <select name="multipleSelectField" multiple="multiple" class="json-form-array">
+ *     		<option value="A" selected="selected">A</option>
+ *     		<option value="B">B</option>
+ *     		<option value="C">C</option>
+ *     </select>      
  * </form>
  * 
  * $('#aform').toJson(); will convert the above form to the following JSON:
@@ -72,7 +95,12 @@
  * 				"simpleAttribute": "131515",
  * 				"listAttribute": ["i", "j"],
  * 			}  
- * 		]
+ * 		],
+ * 		"forcedArrayAttribute": ["x"],
+ * 		"checkboxField": ["Value 1"],
+ * 		"radioField": "Value 1",
+ * 		"selectField": "C",
+ * 		"multipleSelectField": [ "A" ]
  * 	}
  * 
  *  To do a POST request to form action with above JSON on request body you can execute: 
