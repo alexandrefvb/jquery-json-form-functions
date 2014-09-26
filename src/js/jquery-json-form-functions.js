@@ -1,5 +1,5 @@
 /* 
- * @author Alexandre Fidélis Vieira Bitencourt
+ * @author Alexandre Fidelis Vieira Bitencourt
  * @license http://opensource.org/licenses/mit-license.php
  * 
  * This script adds three utility functions to jQuery to convert form data to json objects and do ajax requests to 
@@ -113,7 +113,14 @@
  *   
  */
 $.fn.toJson = function() {
-	function addFieldValue(root, fqn, value) {
+    
+    var arrayRegex = /(.+)\[(\d+)\]/;
+
+    var root = {};
+	
+	var serializedForm = this.serializeArray();    
+
+    function addFieldValue(root, fqn, value) {
 		if (fqn.length == 1) {
 			if (root[fqn[0]]) {
 				var oldValue = root[fqn[0]];
@@ -134,17 +141,17 @@ $.fn.toJson = function() {
 			addFieldValue(newRoot, fqn, value);
 		}
 	}
+	
 	function mergeObjectArrays(root) {
 		if (typeof root === "string") {
 			return root;
 		} else if ($.isArray(root)) {
-			for (i in root) {
+			for (var i in root) {
 				root[i] = mergeObjectArrays(root[i]);
 			}
 		} else {
-			var regex = /(.+)\[(\d+)\]/;
-			for ( var key in root) {
-				var match = key.match(regex);
+			for (var key in root) {
+				var match = key.match(arrayRegex);
 				if (match) {
 					root[match[1]] = root[match[1]] || [];
 					root[match[1]][parseInt(match[2])] = mergeObjectArrays(root[key]);
@@ -156,44 +163,60 @@ $.fn.toJson = function() {
 		}
 		return root;
 	}
-	var root = {};
-	var serializedForm = this.serializeArray();
-	for (i in serializedForm) {
-		if (serializedForm[i].value != '') {
+	
+	function convertToArray(root, fqn) {
+		var match = fqn[0].match(arrayRegex);
+		var value = (match) ? root[match[1]][match[2]] : root[fqn[0]];		
+		if (fqn.length == 1) {
+			if (value && !$.isArray(value) && value !== '') {
+				if (match) {
+					root[match[1]][match[2]] = [value];
+				} else {
+					root[fqn[0]] = [value];
+				}
+			}
+		} else {
+			fqn.splice(0,1);
+			convertToArray(value, fqn);
+		}
+	}
+	
+	for (var i in serializedForm) {
+		if (serializedForm[i].value !== '') {
 			var fqn = serializedForm[i].name.split(' ').join('').split('.');
 			addFieldValue(root, fqn, serializedForm[i].value);
 		}
 	}
+	
 	root = mergeObjectArrays(root);
+	
 	this.find('.json-form-array').each(function (i, elm) {
-		eval('var value = root.' + elm.name + '; if (value && !$.isArray(value)) root.' 
-				+ elm.name + ' = [ root.' + elm.name +' ];');
+        convertToArray(root, elm.name.split(' ').join('').split('.'));
 	});
+	
 	return root;
-}
+};
 
 $.fn.postJson = function() {
-	var jqForm = this;
 	var jqxhr = $.ajax({
 		type : 'POST',
-		url : jqForm.attr('action') || window.location.href,
-		data : JSON.stringify(jqForm.toJson()),
+		url : this.attr('action') || window.location.href,
+		data : JSON.stringify(this.toJson()),
 		dataType : 'json',
 		processData : false,
 		contentType : 'application/json; charset=UTF-8'
 	});
 	return jqxhr;
-}
+};
 
 $.fn.putJson = function() {
-	var jqForm = this;
 	var jqxhr = $.ajax({
 		type : 'PUT',
-		url : jqForm.attr('action') || window.location.href,
-		data : JSON.stringify(jqForm.toJson()),
+		url : this.attr('action') || window.location.href,
+		data : JSON.stringify(this.toJson()),
 		dataType : 'json',
 		processData : false,
 		contentType : 'application/json; charset=UTF-8'
 	});
 	return jqxhr;
-}
+};
