@@ -4,9 +4,21 @@ jquery-json-form-functions
 An extension of jQuery with functions that simplifies JSON ajax requests using html forms.
 
 This script adds three utility functions to jQuery to convert form data to json objects and do ajax requests to POST or PUT the converted form data to http services.
+
+This project was created to simplify the integration of our jQuery enabled websites to REST webservices developed with Spring MVC, but can be used with .  
+
+### Dependencies
+
+- [jQuery](http://jquery.com/) (tested with jquery-1.11.1.min.js)
+- [json2](https://github.com/douglascrockford/JSON-js) polyfill for use in IE < 8.
   
 ### Usage:
 
+#####Import script on html (after jquery script):
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="jquery-json-form-functions-0.1.1.min.js"></script>
+
+#####Use jQuery selector to select form and call library methods:
   	// returns form data converted to json based on input names.
 	$(form-selector).toJson(); 
 
@@ -123,3 +135,36 @@ The result will be:
 #####PUT JSON to action url:
     
    	$('#aform').putJson();
+
+### How to build latest stable version from source:
+
+Lastest production release is allways on master branch.
+
+You will need git, node.js and grunt to build it from the source:
+
+	$ git clone https://github.com/alexandrefvb/jquery-json-form-functions.git
+	$ cd jquery-json-form-functions
+	$ npm install
+	$ grunt
+
+After doing this a minified version of script is generated on: 
+
+**jquery-json-form-functions/dist/[version]/jquery-json-form-functions-[version].min.js**
+
+An example html using the functions is generated on:
+
+**jquery-json-form-functions/dist/[version]/example.html**
+
+
+----
+#######Version history
+**0.1.1** - 29 Sep 2014 
+
+- Improved usage documentation.
+- Added build information to project documentation.
+- Added dependencies information to project documentation.
+ 
+**0.1.0** - 29 Sep 2014 
+
+- Initial release with fully tested code (using jasmine). 
+
