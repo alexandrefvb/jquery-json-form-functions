@@ -1,6 +1,6 @@
 {
   "name": "jquery-json-form-functions",
-  "version": "0.1.0-SNAPSHOT",
+  "version": "0.1-SNAPSHOT",
   "description": "A extension of jQuery with functions that simplifies JSON ajax requests using html forms.",
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-targethtml": "~0.2.6",
     "grunt-contrib-jasmine": "~0.8.0",
-    "grunt-template-jasmine-istanbul": "~0.3.0"
+    "grunt-template-jasmine-istanbul": "~0.3.0",
+    "jasmine-sinon": "~0.4.0"
   }
 }

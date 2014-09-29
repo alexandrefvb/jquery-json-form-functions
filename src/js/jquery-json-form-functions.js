@@ -73,7 +73,7 @@
  *     </select>      
  * </form>
  * 
- * $('#aform').toJson(); will convert the above form to the following JSON:
+ * $("#aform").toJson(); will convert the above form to the following JSON:
  * 
  * 	{ 
  * 		"simpleAttribute": "123",
@@ -105,15 +105,15 @@
  * 
  *  To do a POST request to form action with above JSON on request body you can execute: 
  *  
- *  	$('#aform').postJson();
+ *  	$("#aform").postJson();
  *  
  *  To do a PUT request to form action with above JSON on request body you can execute:
  *   
- *  	$('#aform').putJson();
+ *  	$("#aform").putJson();
  *   
  */
 $.fn.toJson = function() {
-    
+
     var arrayRegex = /(.+)\[(\d+)\]/;
 
     var root = {};
@@ -121,7 +121,7 @@ $.fn.toJson = function() {
 	var serializedForm = this.serializeArray();    
 
     function addFieldValue(root, fqn, value) {
-		if (fqn.length == 1) {
+		if (fqn.length === 1) {
 			if (root[fqn[0]]) {
 				var oldValue = root[fqn[0]];
 				if ($.isArray(oldValue)) {
@@ -167,8 +167,8 @@ $.fn.toJson = function() {
 	function convertToArray(root, fqn) {
 		var match = fqn[0].match(arrayRegex);
 		var value = (match) ? root[match[1]][match[2]] : root[fqn[0]];		
-		if (fqn.length == 1) {
-			if (value && !$.isArray(value) && value !== '') {
+		if (fqn.length === 1) {
+			if (value && !$.isArray(value) && value !== "") {
 				if (match) {
 					root[match[1]][match[2]] = [value];
 				} else {
@@ -182,16 +182,16 @@ $.fn.toJson = function() {
 	}
 	
 	for (var i in serializedForm) {
-		if (serializedForm[i].value !== '') {
-			var fqn = serializedForm[i].name.split(' ').join('').split('.');
+		if (serializedForm[i].value !== "") {
+			var fqn = serializedForm[i].name.split(" ").join("").split(".");
 			addFieldValue(root, fqn, serializedForm[i].value);
 		}
 	}
 	
 	root = mergeObjectArrays(root);
 	
-	this.find('.json-form-array').each(function (i, elm) {
-        convertToArray(root, elm.name.split(' ').join('').split('.'));
+	this.find(".json-form-array").each(function (i, elm) {
+        convertToArray(root, elm.name.split(" ").join("").split("."));
 	});
 	
 	return root;
@@ -199,24 +199,24 @@ $.fn.toJson = function() {
 
 $.fn.postJson = function() {
 	var jqxhr = $.ajax({
-		type : 'POST',
-		url : this.attr('action') || window.location.href,
+		type : "POST",
+		url : this.attr("action") || window.location.href,
 		data : JSON.stringify(this.toJson()),
-		dataType : 'json',
+		dataType : "json",
 		processData : false,
-		contentType : 'application/json; charset=UTF-8'
+		contentType : "application/json; charset=UTF-8"
 	});
 	return jqxhr;
 };
 
 $.fn.putJson = function() {
 	var jqxhr = $.ajax({
-		type : 'PUT',
-		url : this.attr('action') || window.location.href,
+		type : "PUT",
+		url : this.attr("action") || window.location.href,
 		data : JSON.stringify(this.toJson()),
-		dataType : 'json',
+		dataType : "json",
 		processData : false,
-		contentType : 'application/json; charset=UTF-8'
+		contentType : "application/json; charset=UTF-8"
 	});
 	return jqxhr;
 };
