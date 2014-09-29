@@ -5,7 +5,7 @@ An extension of jQuery with functions that simplifies JSON ajax requests using h
 
 This script adds three utility functions to jQuery to convert form data to json objects and do ajax requests to POST or PUT the converted form data to http services.
 
-This project was created to simplify the integration of our jQuery enabled websites to REST webservices developed with Spring MVC, but can be used with .  
+This project was created to simplify the integration of our jQuery enabled websites to consume REST webservices developed with Spring MVC, but can be used with any webservice that consumes JSON on request body and produces JSON on response body.  
 
 ### Dependencies
 
