@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="jquery-json-form-functions : An extension of jQuery with functions that simplifies JSON ajax requests using html forms.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>jquery-json-form-functions</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/alexandrefvb/jquery-json-form-functions">View on GitHub</a>
+
+          <h1 id="project_title">jquery-json-form-functions</h1>
+          <h2 id="project_tagline">An extension of jQuery with functions that simplifies JSON ajax requests using html forms.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/alexandrefvb/jquery-json-form-functions/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/alexandrefvb/jquery-json-form-functions/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="jquery-json-form-functions" class="anchor" href="#jquery-json-form-functions"><span class="octicon octicon-link"></span></a>jquery-json-form-functions</h1>
+
+<p>An extension of jQuery with functions that simplifies JSON ajax requests using html forms.</p>
+
+<p>This script adds three utility functions to jQuery to convert form data to json objects and do ajax requests to POST or PUT the converted form data to http services.</p>
+
+<p>This project was created to simplify the integration of our jQuery enabled websites to REST webservices developed with Spring MVC, but can be used with .  </p>
+
+<h3>
+<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h3>
+
+<ul>
+<li>
+<a href="http://jquery.com/">jQuery</a> (tested with jquery-1.11.1.min.js)</li>
+<li>
+<a href="https://github.com/douglascrockford/JSON-js">json2</a> polyfill for use in IE &lt; 8.</li>
+</ul><h3>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage:</h3>
+
+<h5>
+<a name="import-script-on-html-after-jquery-script" class="anchor" href="#import-script-on-html-after-jquery-script"><span class="octicon octicon-link"></span></a>Import script on html (after jquery script):</h5>
+
+<pre><code>&lt;script src="https://code.jquery.com/jquery-1.11.1.min.js"&gt;&lt;/script&gt;
+&lt;script src="jquery-json-form-functions-0.1.1.min.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<h5>
+<a name="use-jquery-selector-to-select-form-and-call-library-methods" class="anchor" href="#use-jquery-selector-to-select-form-and-call-library-methods"><span class="octicon octicon-link"></span></a>Use jQuery selector to select form and call library methods:</h5>
+
+<pre><code>// returns form data converted to json based on input names.
+$(form-selector).toJson(); 
+
+// converts form data to JSON based on input names and do a POST  
+// ajax request to the url configured in action form attribute. 
+// The return will be the jQuery ajax promise.
+$(form-selector).postJson().done(doneHandler).fail(failHandler);
+
+
+// converts form data to JSON based on input names and do a PUT  
+// ajax request to the url configured in action form attribute. 
+// The return will be the jQuery ajax promise.
+$(form-selector).putJson().done(doneHandler).fail(failHandler);
+</code></pre>
+
+<h3>
+<a name="conversion-rules" class="anchor" href="#conversion-rules"><span class="octicon octicon-link"></span></a>Conversion rules:</h3>
+
+<ul>
+<li>All inputs on form that have a name attribute will be added to the JSON.</li>
+<li>The name attribute defines which property of JSON will be populated.</li>
+<li>Nested objects with multiple levels of attributes can be created using dots "." to specify nested properties.</li>
+<li>Arrays of values can be created using the same name in more than one input on same form.</li>
+<li>To create arrays of objects indexes must be used to determine which object of list will hold input value.</li>
+<li>Inputs with empty values are ommitted on JSON.</li>
+<li>For checkboxes and radio buttons just "checked" values are added to JSON.</li>
+<li>Any input with class "json-form-array" will be converted to an array in JSON. This feature can be used in selects with multiple selection and checkboxes to force array representation even if just one option was selected.</li>
+</ul><h3>
+<a name="full-example" class="anchor" href="#full-example"><span class="octicon octicon-link"></span></a>Full example:</h3>
+
+<h5>
+<a name="html-form" class="anchor" href="#html-form"><span class="octicon octicon-link"></span></a>HTML form:</h5>
+
+<pre><code>&lt;form id="aForm" action="http://some-service-url"&gt;   
+    &lt;input type="hidden" name="simpleAttribute" value="123"/&gt;
+
+    &lt;input type="text" name="listAttribute" value="a"/&gt;
+    &lt;input type="text" name="listAttribute" value="b"/&gt;
+
+    &lt;input type="text" name="object.simpleAtrtribute" value="456"/&gt;
+    &lt;input type="text" name="object.listAttribute" value="c"/&gt;
+    &lt;input type="text" name="object.listAttribute" value="d"/&gt;
+    &lt;input type="text" name="object.nestedObject.simpleAtrtribute" value="789"/&gt;  
+    &lt;input type="text" name="object.nestedObject.listAttribute" value="e"/&gt;
+    &lt;input type="text" name="object.nestedObject.listAttribute" value="f"/&gt;
+
+    &lt;input type="text" name="objectList[0].simpleAtrtribute" value="101112"/&gt;
+    &lt;input type="text" name="objectList[0].listAttribute" value="g"/&gt;
+    &lt;input type="text" name="objectList[0].listAttribute" value="h"/&gt;
+    &lt;input type="text" name="objectList[1].simpleAtrtribute" value="131515"/&gt;
+    &lt;input type="text" name="objectList[1].listAttribute" value="i"/&gt;
+    &lt;input type="text" name="objectList[1].listAttribute" value="j"/&gt;
+
+    &lt;input type="hidden" name="ignoredAttribute" value=""/&gt;
+
+    &lt;input type="hidden" name="forcedArrayAttribute" value="x" class="json-form-array"/&gt;
+
+    &lt;input type="checkbox" name="checkboxField" value="Value 1" class="json-form-array" checked="checked"/&gt; 
+    &lt;input type="checkbox" name="checkboxField" value="Value 2" /&gt; 
+    &lt;input type="checkbox" name="checkboxField" value="Value 3" /&gt;
+
+    &lt;input type="radio" name="radioField" value="Value 1" checked="checked"/&gt;
+    &lt;input type="radio" name="radioField" value="Value 2"/&gt;
+    &lt;input type="radio" name="radioField" value="Value 3"/&gt; 
+
+    &lt;select name="selectField"&gt;
+        &lt;option value="A"&gt;A&lt;/option&gt;
+        &lt;option value="B"&gt;B&lt;/option&gt;
+        &lt;option value="C" selected="selected"&gt;C&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;select name="multipleSelectField" multiple="multiple" class="json-form-array"&gt;
+        &lt;option value="A" selected="selected"&gt;A&lt;/option&gt;
+        &lt;option value="B"&gt;B&lt;/option&gt;
+        &lt;option value="C"&gt;C&lt;/option&gt;
+    &lt;/select&gt;        
+&lt;/form&gt;
+</code></pre>
+
+<h5>
+<a name="converting-to-json" class="anchor" href="#converting-to-json"><span class="octicon octicon-link"></span></a>Converting to JSON:</h5>
+
+<pre><code>$('#aform').toJson(); 
+</code></pre>
+
+<p>The result will be:</p>
+
+<pre><code>{ 
+    "simpleAttribute": "123",
+    "listAttribute": ["a", "b"],
+    "object": {
+        "simpleAttribute": "456",
+        "listAttribute": ["c", "d"],
+        "nestedObject": {
+            "simpleAttribute": "789",
+            "listAttribute": ["e", "f"]
+        } 
+    }
+    "objectList": [
+        {
+            "simpleAttribute": "101112",
+            "listAttribute": ["g", "h"],
+        },  
+        {
+            "simpleAttribute": "131515",
+            "listAttribute": ["i", "j"],
+        }  
+    ],
+    "forcedArrayAttribute": ["x"],
+    "checkboxField": ["Value 1"],
+    "radioField": "Value 1",
+    "selectField": "C",
+    "multipleSelectField": [ "A" ]          
+}
+</code></pre>
+
+<h5>
+<a name="post-json-to-action-url" class="anchor" href="#post-json-to-action-url"><span class="octicon octicon-link"></span></a>POST JSON to action url:</h5>
+
+<pre><code>$('#aform').postJson();
+</code></pre>
+
+<h5>
+<a name="put-json-to-action-url" class="anchor" href="#put-json-to-action-url"><span class="octicon octicon-link"></span></a>PUT JSON to action url:</h5>
+
+<pre><code>$('#aform').putJson();
+</code></pre>
+
+<h3>
+<a name="how-to-build-latest-stable-version-from-source" class="anchor" href="#how-to-build-latest-stable-version-from-source"><span class="octicon octicon-link"></span></a>How to build latest stable version from source:</h3>
+
+<p>Lastest production release is allways on master branch.</p>
+
+<p>You will need git, node.js and grunt to build it from the source:</p>
+
+<pre><code>$ git clone https://github.com/alexandrefvb/jquery-json-form-functions.git
+$ cd jquery-json-form-functions
+$ npm install
+$ grunt
+</code></pre>
+
+<p>After doing this a minified version of script is generated on: </p>
+
+<p><strong>jquery-json-form-functions/dist/[version]/jquery-json-form-functions-[version].min.js</strong></p>
+
+<p>An example html using the functions is generated on:</p>
+
+<p><strong>jquery-json-form-functions/dist/[version]/example.html</strong></p>
+
+<hr><h6>
+<a name="version-history" class="anchor" href="#version-history"><span class="octicon octicon-link"></span></a>Version history</h6>
+
+<p><strong>0.1.1</strong> - 29 Sep 2014 </p>
+
+<ul>
+<li>Improved usage documentation.</li>
+<li>Added build information to project documentation.</li>
+<li>Added dependencies information to project documentation.</li>
+</ul><p><strong>0.1.0</strong> - 29 Sep 2014 </p>
+
+<ul>
+<li>Initial release with fully tested code (using jasmine). </li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">jquery-json-form-functions maintained by <a href="https://github.com/alexandrefvb">alexandrefvb</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
