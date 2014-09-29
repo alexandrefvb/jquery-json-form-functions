@@ -157,7 +157,7 @@ An example html using the functions is generated on:
 
 
 ----
-#######Version history
+######Version history
 **0.1.1** - 29 Sep 2014 
 
 - Improved usage documentation.
