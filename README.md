@@ -1,7 +1,7 @@
 jquery-json-form-functions
 ==========================
 
-A extension of jQuery with functions that simplifies JSON ajax requests using html forms.
+An extension of jQuery with functions that simplifies JSON ajax requests using html forms.
 
 This script adds three utility functions to jQuery to convert form data to json objects and do ajax requests to POST or PUT the converted form data to http services.
   
