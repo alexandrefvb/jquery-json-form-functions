@@ -21,19 +21,21 @@ This project was created to simplify the integration of our jQuery enabled websi
 ```
 
 #####Use jQuery selector to select form and call library methods:
-  	// returns form data converted to json based on input names.
-	$(form-selector).toJson(); 
+```javascript
+// returns form data converted to json based on input names.
+$(form-selector).toJson(); 
 
-	// converts form data to JSON based on input names and do a POST  
-	// ajax request to the url configured in action form attribute. 
-	// The return will be the jQuery ajax promise.
-	$(form-selector).postJson().done(doneHandler).fail(failHandler);
+// converts form data to JSON based on input names and do a POST  
+// ajax request to the url configured in action form attribute. 
+// The return will be the jQuery ajax promise.
+$(form-selector).postJson().done(doneHandler).fail(failHandler);
  
 
-	// converts form data to JSON based on input names and do a PUT  
-	// ajax request to the url configured in action form attribute. 
-	// The return will be the jQuery ajax promise.
-	$(form-selector).putJson().done(doneHandler).fail(failHandler);
+// converts form data to JSON based on input names and do a PUT  
+// ajax request to the url configured in action form attribute. 
+// The return will be the jQuery ajax promise.
+$(form-selector).putJson().done(doneHandler).fail(failHandler);
+```
   
 ### Conversion rules:
 
@@ -51,92 +53,101 @@ This project was created to simplify the integration of our jQuery enabled websi
 
 #####HTML form:
 
-	<form id="aForm" action="http://some-service-url">   
-    	<input type="hidden" name="simpleAttribute" value="123"/>
+```html
+<form id="aForm" action="http://some-service-url">   
+	<input type="hidden" name="simpleAttribute" value="123"/>
 
-    	<input type="text" name="listAttribute" value="a"/>
-    	<input type="text" name="listAttribute" value="b"/>
+	<input type="text" name="listAttribute" value="a"/>
+	<input type="text" name="listAttribute" value="b"/>
+  
+	<input type="text" name="object.simpleAtrtribute" value="456"/>
+	<input type="text" name="object.listAttribute" value="c"/>
+	<input type="text" name="object.listAttribute" value="d"/>
+	<input type="text" name="object.nestedObject.simpleAtrtribute" value="789"/>  
+	<input type="text" name="object.nestedObject.listAttribute" value="e"/>
+	<input type="text" name="object.nestedObject.listAttribute" value="f"/>
       
-    	<input type="text" name="object.simpleAtrtribute" value="456"/>
-    	<input type="text" name="object.listAttribute" value="c"/>
-    	<input type="text" name="object.listAttribute" value="d"/>
-    	<input type="text" name="object.nestedObject.simpleAtrtribute" value="789"/>  
-    	<input type="text" name="object.nestedObject.listAttribute" value="e"/>
-    	<input type="text" name="object.nestedObject.listAttribute" value="f"/>
-	      
-    	<input type="text" name="objectList[0].simpleAtrtribute" value="101112"/>
-	    <input type="text" name="objectList[0].listAttribute" value="g"/>
-	    <input type="text" name="objectList[0].listAttribute" value="h"/>
-    	<input type="text" name="objectList[1].simpleAtrtribute" value="131515"/>
-	    <input type="text" name="objectList[1].listAttribute" value="i"/>
-    	<input type="text" name="objectList[1].listAttribute" value="j"/>
+	<input type="text" name="objectList[0].simpleAtrtribute" value="101112"/>
+    <input type="text" name="objectList[0].listAttribute" value="g"/>
+    <input type="text" name="objectList[0].listAttribute" value="h"/>
+	<input type="text" name="objectList[1].simpleAtrtribute" value="131515"/>
+    <input type="text" name="objectList[1].listAttribute" value="i"/>
+	<input type="text" name="objectList[1].listAttribute" value="j"/>
 
-        <input type="hidden" name="ignoredAttribute" value=""/>
+    <input type="hidden" name="ignoredAttribute" value=""/>
 
-        <input type="hidden" name="forcedArrayAttribute" value="x" class="json-form-array"/>
+    <input type="hidden" name="forcedArrayAttribute" value="x" class="json-form-array"/>
 
-        <input type="checkbox" name="checkboxField" value="Value 1" class="json-form-array" checked="checked"/> 
-        <input type="checkbox" name="checkboxField" value="Value 2" /> 
-        <input type="checkbox" name="checkboxField" value="Value 3" />
-        
-        <input type="radio" name="radioField" value="Value 1" checked="checked"/>
-        <input type="radio" name="radioField" value="Value 2"/>
-        <input type="radio" name="radioField" value="Value 3"/> 
-        
-        <select name="selectField">
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C" selected="selected">C</option>
-        </select>
-        
-        <select name="multipleSelectField" multiple="multiple" class="json-form-array">
-            <option value="A" selected="selected">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-        </select>        
-    </form>
+    <input type="checkbox" name="checkboxField" value="Value 1" class="json-form-array" checked="checked"/> 
+    <input type="checkbox" name="checkboxField" value="Value 2" /> 
+    <input type="checkbox" name="checkboxField" value="Value 3" />
+    
+    <input type="radio" name="radioField" value="Value 1" checked="checked"/>
+    <input type="radio" name="radioField" value="Value 2"/>
+    <input type="radio" name="radioField" value="Value 3"/> 
+    
+    <select name="selectField">
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C" selected="selected">C</option>
+    </select>
+    
+    <select name="multipleSelectField" multiple="multiple" class="json-form-array">
+        <option value="A" selected="selected">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+    </select>        
+</form>
+```
 
 #####Converting to JSON:
     
-  	$('#aform').toJson(); 
+```javascript
+$('#aform').toJson(); 
+```
   
 The result will be:
-
-  	{ 
-  		"simpleAttribute": "123",
-  		"listAttribute": ["a", "b"],
-  		"object": {
-  			"simpleAttribute": "456",
-  			"listAttribute": ["c", "d"],
- 			"nestedObject": {
-  				"simpleAttribute": "789",
-  				"listAttribute": ["e", "f"]
-  			} 
-  		}
-  		"objectList": [
-  			{
-  				"simpleAttribute": "101112",
-  				"listAttribute": ["g", "h"],
-  			},  
-  			{
-  				"simpleAttribute": "131515",
-  				"listAttribute": ["i", "j"],
-  			}  
-  		],
-  		"forcedArrayAttribute": ["x"],
-  		"checkboxField": ["Value 1"],
-  		"radioField": "Value 1",
-        "selectField": "C",
-        "multipleSelectField": [ "A" ]   		
-  	}
+```javascript
+{ 
+	"simpleAttribute": "123",
+	"listAttribute": ["a", "b"],
+	"object": {
+		"simpleAttribute": "456",
+		"listAttribute": ["c", "d"],
+		"nestedObject": {
+			"simpleAttribute": "789",
+			"listAttribute": ["e", "f"]
+		} 
+	}
+	"objectList": [
+		{
+			"simpleAttribute": "101112",
+			"listAttribute": ["g", "h"],
+		},  
+		{
+			"simpleAttribute": "131515",
+			"listAttribute": ["i", "j"],
+		}  
+	],
+	"forcedArrayAttribute": ["x"],
+	"checkboxField": ["Value 1"],
+	"radioField": "Value 1",
+    "selectField": "C",
+    "multipleSelectField": [ "A" ]   		
+}
+```
   
 #####POST JSON to action url:
    
-   	$('#aform').postJson();
+```javascript
+$('#aform').postJson();
+```
    
 #####PUT JSON to action url:
-    
-   	$('#aform').putJson();
+
+```javascript
+$('#aform').putJson();
+```
 
 ### How to build latest stable version from source:
 
@@ -160,7 +171,7 @@ An example html using the functions is generated on:
 
 ----
 ######Version history
-**0.2.0** - dd MMM yyyy
+**0.2.0** - TBD
  
  - Syntax highlight on documentation.
  - Change of simple arrays name syntax (introduction of [] notation).
