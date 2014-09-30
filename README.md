@@ -158,7 +158,6 @@ $("#aform").putJson();
 ```
 
 ### How to build latest stable version from source:
-forcedArrayAttribute
 Lastest production release is allways on master branch.
 
 You will need git, node.js and grunt to build it from the source:
