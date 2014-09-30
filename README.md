@@ -16,7 +16,7 @@ This project was created to simplify the integration of our jQuery enabled websi
 - It uses jQuery.serializeArray() to get form data in JSON format, so all W3C rules are followed and serialization works in any browser.
 - The JSON returned by jQuery.serializeArray() (which is flat) is manipulated to support nested objects.
 - It is compatible with most common REST webservice frameworks that consumes and produces JSON.
-- It is very small (minified version has only **1.25 kb**)
+- It is very small (minified version has only **1 kb**)
 - It is fully tested with jasmine and has **100%** of unit test coverage. (see [istambul report](http://alexandrefvb.github.io/jquery-json-form-functions/0.2.0/report/index.html))
   
 ### Usage:
@@ -84,7 +84,7 @@ $(form-selector).putJson().done(doneHandler).fail(failHandler);
 
     <input type="hidden" name="ignoredAttribute" value=""/>
 
-    <input type="hidden" name="singleValuearrayAttribute[]" value="x"/>
+    <input type="hidden" name="singleValueArrayAttribute[]" value="x"/>
 
     <input type="checkbox" name="checkboxField[]" value="Value 1" checked="checked"/> 
     <input type="checkbox" name="checkboxField[]" value="Value 2" /> 
@@ -137,7 +137,7 @@ The result will be:
 			"arrayAttribute": ["i", "j"],
 		}  
 	],
-	"forcedArrayAttribute": ["x"],
+	"singleValueArrayAttribute": ["x"],
 	"checkboxField": ["Value 1"],
 	"radioField": "Value 1",
     "selectField": "C",
@@ -158,7 +158,7 @@ $("#aform").putJson();
 ```
 
 ### How to build latest stable version from source:
-
+forcedArrayAttribute
 Lastest production release is allways on master branch.
 
 You will need git, node.js and grunt to build it from the source:
@@ -179,10 +179,11 @@ An example html using the functions is generated on:
 
 ----
 ######Version history
-**0.2.0** - TBD
+**0.2.0** - 30 Sep 2014
  
  - Syntax highlight on documentation.
  - Change of simple arrays name syntax (introduction of [] notation).
+ - Example page scrolls to show toJson() result.
  
 **0.1.1** - 29 Sep 2014 
 
