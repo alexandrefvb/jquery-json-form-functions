@@ -28,21 +28,21 @@ describe("Unit tests", function() {
 		expect(json.simpleSelectField).toBe("C");
 	});
 	
-	it("check if simple attributes with json-form-array class are serialized as arrays", function() {
+	it("check if simple attributes with '[]' suffix are serialized as arrays", function() {
 		var json = $(
 			"<form>" +
-				"<input type='hidden' name='simpleInputHidden' value='1' class='json-form-array'></input>"+
-				"<input type='hidden' name='nested.simpleInputHidden' value='1' class='json-form-array'></input>"+
-				"<input type='hidden' name='simpleInputHiddenList[0]' value='1' class='json-form-array'></input>"+
-				"<input type='text' name='simpleInputText' value='2' class='json-form-array'></input>"+
-				"<input type='checkbox' name='simpleUncheckedCheckbox' value='3' class='json-form-array'></input>"+
-				"<input type='checkbox' name='simpleCheckedCheckbox' value='4' checked  class='json-form-array'></input>"+
-				"<input type='radio' name='simpleUncheckedRadio' value='5'  class='json-form-array'></input>"+
-				"<input type='radio' name='simpleCheckedRadio' value='6' checked  class='json-form-array'></input>"+
-				"<input type='radio' name='simpleCheckedRadio' value='7' class='json-form-array'></input>"+
-				"<input type='radio' name='simpleCheckedRadio' value='8' class='json-form-array'></input>"+
-				"<input type='text' name='simpleInputWithEmptyValue' value='' class='json-form-array'></input>"+
-				"<select name='simpleSelectField' class='json-form-array'>" +
+				"<input type='hidden' name='simpleInputHidden[]' value='1'></input>"+
+				"<input type='hidden' name='nested.simpleInputHidden[]' value='1'></input>"+
+				"<input type='hidden' name='simpleInputHiddenList[0][]' value='1'></input>"+
+				"<input type='text' name='simpleInputText[]' value='2'></input>"+
+				"<input type='checkbox' name='simpleUncheckedCheckbox[]' value='3'></input>"+
+				"<input type='checkbox' name='simpleCheckedCheckbox[]' value='4' checked ></input>"+
+				"<input type='radio' name='simpleUncheckedRadio[]' value='5' ></input>"+
+				"<input type='radio' name='simpleCheckedRadio[]' value='6' checked ></input>"+
+				"<input type='radio' name='simpleCheckedRadio[]' value='7'></input>"+
+				"<input type='radio' name='simpleCheckedRadio[]' value='8'></input>"+
+				"<input type='text' name='simpleInputWithEmptyValue[]' value=''></input>"+
+				"<select name='simpleSelectField[]'>" +
 					"<option value='A'>A</option>"+
 					"<option value='B'>B</option>"+
 					"<option value='C' selected='selected'>C</option>"+
@@ -60,14 +60,21 @@ describe("Unit tests", function() {
 		expect(json.simpleSelectField).toEqual(["C"]);
 	});
 
-	it("check if inputs with the same name are serialized as arrays", function() {
+	it("check multiple value array serialization", function() {
 		var json = $(
 			"<form>" +
-				"<input type='hidden' name='inputArray' value='1'></input>"+
-				"<input type='hidden' name='inputArray' value='2'></input>"+
-				"<input type='hidden' name='inputArray' value='3'></input>"+
+				"<input type='hidden' name='inputArray[]' value='1'></input>"+
+				"<input type='hidden' name='inputArray[]' value='2'></input>"+
+				"<input type='hidden' name='inputArray[]' value='3'></input>"+
+				"<input type='hidden' name='object.inputArray[]' value='1'></input>"+
+				"<input type='hidden' name='object.inputArray[]' value='2'></input>"+
+				"<input type='hidden' name='object.inputArray[]' value='3'></input>"+
+				"<input type='hidden' name='repeatedSingleValue' value='4'></input>"+
+				"<input type='hidden' name='repeatedSingleValue' value='5'></input>"+
 			"</form>").toJson();
 		expect(json.inputArray).toEqual(["1","2","3"]);
+		expect(json.object.inputArray).toEqual(["1","2","3"]);
+		expect(json.repeatedSingleValue).toEqual("5");
 	});
 
 	it("check if nested attributes are serialized according to the rules", function() {
@@ -87,8 +94,10 @@ describe("Unit tests", function() {
 					"<option value='B'>B</option>"+
 					"<option value='C' selected='selected'>C</option>"+
 				"</select>"+	
-				"<input type='hidden' name='object.inputArray' value='1'></input>"+
-				"<input type='hidden' name='object.inputArray' value='2'></input>"+
+				"<input type='hidden' name='object.inputArray[]' value='1'></input>"+
+				"<input type='hidden' name='object.inputArray[]' value='2'></input>"+
+				"<input type='checkbox' name='object.multipleCheckedCheckbox[]' value='9' checked></input>"+
+				"<input type='checkbox' name='object.multipleCheckedCheckbox[]' value='10' checked></input>"+
 			"</form>").toJson();
 		expect(json.object.simpleInputHidden).toBe("1");
 		expect(json.object.simpleInputText).toBe("2");
@@ -99,6 +108,7 @@ describe("Unit tests", function() {
 		expect(json.object.simpleInputWithEmptyValue).toBe(undefined);
 		expect(json.object.simpleSelectField).toBe("C");
 		expect(json.object.inputArray).toEqual(["1","2"]);
+		expect(json.object.multipleCheckedCheckbox).toEqual(["9","10"]);
 	});
 	
 	it("check if objects lists are serialized according to the rules", function() {
@@ -118,8 +128,8 @@ describe("Unit tests", function() {
 					"<option value='B'>B</option>"+
 					"<option value='C' selected='selected'>C</option>"+
 				"</select>"+	
-				"<input type='hidden' name='object[0].inputArray' value='1'></input>"+
-				"<input type='hidden' name='object[0].inputArray' value='2'></input>"+
+				"<input type='hidden' name='object[0].inputArray[]' value='1'></input>"+
+				"<input type='hidden' name='object[0].inputArray[]' value='2'></input>"+
 
 				"<input type='hidden' name='object[1].simpleInputHidden' value='1'></input>"+
 				"<input type='text' name='object[1].simpleInputText' value='2'></input>"+
@@ -135,9 +145,9 @@ describe("Unit tests", function() {
 					"<option value='B'>B</option>"+
 					"<option value='C' selected='selected'>C</option>"+
 				"</select>"+	
-				"<input type='hidden' name='object[1].inputArray' value='1'></input>"+
-				"<input type='hidden' name='object[1].inputArray' value='2'></input>"+
-				"<input type='hidden' name='object[1].inputArray' value='3'></input>"+
+				"<input type='hidden' name='object[1].inputArray[]' value='1'></input>"+
+				"<input type='hidden' name='object[1].inputArray[]' value='2'></input>"+
+				"<input type='hidden' name='object[1].inputArray[]' value='3'></input>"+
 			"</form>").toJson();
 
 		expect(json.object[0].simpleInputHidden).toBe("1");
@@ -167,20 +177,20 @@ describe("Unit tests", function() {
 		var jqForm = $(
 			"<form action='http://www.api.com/some-service-url'>" +
 				"<input type='hidden' name='simpleAttr' value='a'></input>" +
-				"<input type='hidden' name='arrayAttr' value='b'></input>" +
-				"<input type='hidden' name='arrayAttr' value='c'></input>" +
+				"<input type='hidden' name='arrayAttr[]' value='b'></input>" +
+				"<input type='hidden' name='arrayAttr[]' value='c'></input>" +
 				"<input type='hidden' name='object.simpleAttr' value='a'></input>" +
-				"<input type='hidden' name='object.arrayAttr' value='b'></input>" +
-				"<input type='hidden' name='object.arrayAttr' value='c'></input>" +
+				"<input type='hidden' name='object.arrayAttr[]' value='b'></input>" +
+				"<input type='hidden' name='object.arrayAttr[]' value='c'></input>" +
 				"<input type='hidden' name='object.nestedObject.simpleAttr' value='a'></input>" +
-				"<input type='hidden' name='object.nestedObject.arrayAttr' value='b'></input>" +
-				"<input type='hidden' name='object.nestedObject.arrayAttr' value='c'></input>" +
+				"<input type='hidden' name='object.nestedObject.arrayAttr[]' value='b'></input>" +
+				"<input type='hidden' name='object.nestedObject.arrayAttr[]' value='c'></input>" +
 				"<input type='hidden' name='objectArray[0].simpleAttr' value='a'></input>" +
-				"<input type='hidden' name='objectArray[0].arrayAttr' value='b'></input>" +
-				"<input type='hidden' name='objectArray[0].arrayAttr' value='c'></input>" +
+				"<input type='hidden' name='objectArray[0].arrayAttr[]' value='b'></input>" +
+				"<input type='hidden' name='objectArray[0].arrayAttr[]' value='c'></input>" +
 				"<input type='hidden' name='objectArray[1].simpleAttr' value='a'></input>" +
-				"<input type='hidden' name='objectArray[1].arrayAttr' value='b'></input>" +
-				"<input type='hidden' name='objectArray[1].arrayAttr' value='c'></input>" +
+				"<input type='hidden' name='objectArray[1].arrayAttr[]' value='b'></input>" +
+				"<input type='hidden' name='objectArray[1].arrayAttr[]' value='c'></input>" +
 			"</form>");
 		jqForm.putJson();
 		expect(spy.calledWith({
@@ -199,20 +209,20 @@ describe("Unit tests", function() {
 		var jqForm = $(
 			"<form action='http://www.api.com/some-service-url'>" +
 				"<input type='hidden' name='simpleAttr' value='a'></input>" +
-				"<input type='hidden' name='arrayAttr' value='b'></input>" +
-				"<input type='hidden' name='arrayAttr' value='c'></input>" +
+				"<input type='hidden' name='arrayAttr[]' value='b'></input>" +
+				"<input type='hidden' name='arrayAttr[]' value='c'></input>" +
 				"<input type='hidden' name='object.simpleAttr' value='a'></input>" +
-				"<input type='hidden' name='object.arrayAttr' value='b'></input>" +
-				"<input type='hidden' name='object.arrayAttr' value='c'></input>" +
+				"<input type='hidden' name='object.arrayAttr[]' value='b'></input>" +
+				"<input type='hidden' name='object.arrayAttr[]' value='c'></input>" +
 				"<input type='hidden' name='object.nestedObject.simpleAttr' value='a'></input>" +
-				"<input type='hidden' name='object.nestedObject.arrayAttr' value='b'></input>" +
-				"<input type='hidden' name='object.nestedObject.arrayAttr' value='c'></input>" +
+				"<input type='hidden' name='object.nestedObject.arrayAttr[]' value='b'></input>" +
+				"<input type='hidden' name='object.nestedObject.arrayAttr[]' value='c'></input>" +
 				"<input type='hidden' name='objectArray[0].simpleAttr' value='a'></input>" +
-				"<input type='hidden' name='objectArray[0].arrayAttr' value='b'></input>" +
-				"<input type='hidden' name='objectArray[0].arrayAttr' value='c'></input>" +
+				"<input type='hidden' name='objectArray[0].arrayAttr[]' value='b'></input>" +
+				"<input type='hidden' name='objectArray[0].arrayAttr[]' value='c'></input>" +
 				"<input type='hidden' name='objectArray[1].simpleAttr' value='a'></input>" +
-				"<input type='hidden' name='objectArray[1].arrayAttr' value='b'></input>" +
-				"<input type='hidden' name='objectArray[1].arrayAttr' value='c'></input>" +
+				"<input type='hidden' name='objectArray[1].arrayAttr[]' value='b'></input>" +
+				"<input type='hidden' name='objectArray[1].arrayAttr[]' value='c'></input>" +
 			"</form>");
 		jqForm.postJson();
 		expect(spy.calledWith({

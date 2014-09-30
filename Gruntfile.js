@@ -52,14 +52,16 @@ module.exports = function(grunt) {
 					helpers: "https://cdnjs.cloudflare.com/ajax/libs/sinon.js/1.7.3/sinon-min.js"
 				}
 			}
-		}
+		},
+		clean:["dist", "test-coverage"]
 	});
 
+	grunt.loadNpmTasks("grunt-contrib-clean");
 	grunt.loadNpmTasks("grunt-contrib-uglify");
 	grunt.loadNpmTasks("grunt-contrib-jshint");
 	grunt.loadNpmTasks("grunt-contrib-watch");
 	grunt.loadNpmTasks("grunt-targethtml");
 	grunt.loadNpmTasks("grunt-contrib-jasmine");
 
-	grunt.registerTask("default", ["jshint", "jasmine:src", "uglify", "jasmine:dist", "targethtml:dist"]);
+	grunt.registerTask("default", ["jshint", "clean", "jasmine:src", "uglify", "jasmine:dist", "targethtml:dist"]);
 };
