@@ -42,11 +42,10 @@ $(form-selector).putJson().done(doneHandler).fail(failHandler);
   - All inputs on form that have a name attribute will be added to the JSON.
   - The name attribute defines which property of JSON will be populated.
   - Nested objects with multiple levels of attributes can be created using dots "." to specify nested properties.
-  - Arrays of values can be created using the same name in more than one input on same form.
+  - Arrays of values can be created using the notation "[]" on name attribute.
   - To create arrays of objects indexes must be used to determine which object of list will hold input value.
   - Inputs with empty values are ommitted on JSON.
   - For checkboxes and radio buttons just "checked" values are added to JSON.
-  - Any input with class "json-form-array" will be converted to an array in JSON. This feature can be used in selects with multiple selection and checkboxes to force array representation even if just one option was selected.
     
 
 ### Full example:
@@ -57,30 +56,30 @@ $(form-selector).putJson().done(doneHandler).fail(failHandler);
 <form id="aForm" action="http://some-service-url">   
 	<input type="hidden" name="simpleAttribute" value="123"/>
 
-	<input type="text" name="listAttribute" value="a"/>
-	<input type="text" name="listAttribute" value="b"/>
+	<input type="text" name="arrayAttribute[]" value="a"/>
+	<input type="text" name="arrayAttribute[]" value="b"/>
   
 	<input type="text" name="object.simpleAtrtribute" value="456"/>
-	<input type="text" name="object.listAttribute" value="c"/>
-	<input type="text" name="object.listAttribute" value="d"/>
+	<input type="text" name="object.arrayAttribute[]" value="c"/>
+	<input type="text" name="object.arrayAttribute[]" value="d"/>
 	<input type="text" name="object.nestedObject.simpleAtrtribute" value="789"/>  
-	<input type="text" name="object.nestedObject.listAttribute" value="e"/>
-	<input type="text" name="object.nestedObject.listAttribute" value="f"/>
+	<input type="text" name="object.nestedObject.arrayAttribute[]" value="e"/>
+	<input type="text" name="object.nestedObject.arrayAttribute[]" value="f"/>
       
 	<input type="text" name="objectList[0].simpleAtrtribute" value="101112"/>
-    <input type="text" name="objectList[0].listAttribute" value="g"/>
-    <input type="text" name="objectList[0].listAttribute" value="h"/>
+    <input type="text" name="objectList[0].arrayAttribute[]" value="g"/>
+    <input type="text" name="objectList[0].arrayAttribute[]" value="h"/>
 	<input type="text" name="objectList[1].simpleAtrtribute" value="131515"/>
-    <input type="text" name="objectList[1].listAttribute" value="i"/>
-	<input type="text" name="objectList[1].listAttribute" value="j"/>
+    <input type="text" name="objectList[1].arrayAttribute[]" value="i"/>
+	<input type="text" name="objectList[1].arrayAttribute[]" value="j"/>
 
     <input type="hidden" name="ignoredAttribute" value=""/>
 
-    <input type="hidden" name="forcedArrayAttribute" value="x" class="json-form-array"/>
+    <input type="hidden" name="singleValuearrayAttribute[]" value="x"/>
 
-    <input type="checkbox" name="checkboxField" value="Value 1" class="json-form-array" checked="checked"/> 
-    <input type="checkbox" name="checkboxField" value="Value 2" /> 
-    <input type="checkbox" name="checkboxField" value="Value 3" />
+    <input type="checkbox" name="checkboxField[]" value="Value 1" checked="checked"/> 
+    <input type="checkbox" name="checkboxField[]" value="Value 2" /> 
+    <input type="checkbox" name="checkboxField[]" value="Value 3" />
     
     <input type="radio" name="radioField" value="Value 1" checked="checked"/>
     <input type="radio" name="radioField" value="Value 2"/>
@@ -92,7 +91,7 @@ $(form-selector).putJson().done(doneHandler).fail(failHandler);
         <option value="C" selected="selected">C</option>
     </select>
     
-    <select name="multipleSelectField" multiple="multiple" class="json-form-array">
+    <select name="multipleSelectField[]" multiple="multiple">
         <option value="A" selected="selected">A</option>
         <option value="B">B</option>
         <option value="C">C</option>
@@ -103,30 +102,30 @@ $(form-selector).putJson().done(doneHandler).fail(failHandler);
 #####Converting to JSON:
     
 ```javascript
-$('#aform').toJson(); 
+$("#aform").toJson(); 
 ```
   
 The result will be:
 ```javascript
 { 
 	"simpleAttribute": "123",
-	"listAttribute": ["a", "b"],
+	"arrayAttribute": ["a", "b"],
 	"object": {
 		"simpleAttribute": "456",
-		"listAttribute": ["c", "d"],
+		"arrayAttribute": ["c", "d"],
 		"nestedObject": {
 			"simpleAttribute": "789",
-			"listAttribute": ["e", "f"]
+			"arrayAttribute": ["e", "f"]
 		} 
 	}
 	"objectList": [
 		{
 			"simpleAttribute": "101112",
-			"listAttribute": ["g", "h"],
+			"arrayAttribute": ["g", "h"],
 		},  
 		{
 			"simpleAttribute": "131515",
-			"listAttribute": ["i", "j"],
+			"arrayAttribute": ["i", "j"],
 		}  
 	],
 	"forcedArrayAttribute": ["x"],
@@ -140,13 +139,13 @@ The result will be:
 #####POST JSON to action url:
    
 ```javascript
-$('#aform').postJson();
+$("#aform").postJson();
 ```
    
 #####PUT JSON to action url:
 
 ```javascript
-$('#aform').putJson();
+$("#aform").putJson();
 ```
 
 ### How to build latest stable version from source:
