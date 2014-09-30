@@ -15,8 +15,10 @@ This project was created to simplify the integration of our jQuery enabled websi
 ### Usage:
 
 #####Import script on html (after jquery script):
-	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="jquery-json-form-functions-0.2.0.min.js"></script>
+```html
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="jquery-json-form-functions-0.2.0.min.js"></script>
+```
 
 #####Use jQuery selector to select form and call library methods:
   	// returns form data converted to json based on input names.
