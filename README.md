@@ -16,7 +16,7 @@ This project was created to simplify the integration of our jQuery enabled websi
 
 #####Import script on html (after jquery script):
 	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="jquery-json-form-functions-0.1.1.min.js"></script>
+	<script src="jquery-json-form-functions-0.2.0.min.js"></script>
 
 #####Use jQuery selector to select form and call library methods:
   	// returns form data converted to json based on input names.
@@ -149,15 +149,20 @@ You will need git, node.js and grunt to build it from the source:
 
 After doing this a minified version of script is generated on: 
 
-**jquery-json-form-functions/dist/[version]/jquery-json-form-functions-[version].min.js**
+**jquery-json-form-functions/dist/0.2.0/jquery-json-form-functions-0.2.0.min.js**
 
 An example html using the functions is generated on:
 
-**jquery-json-form-functions/dist/[version]/example.html**
+**jquery-json-form-functions/dist/0.2.0/example.html**
 
 
 ----
 ######Version history
+**0.2.0** - dd MMM yyyy
+ 
+ - Syntax highlight on documentation.
+ - Change of simple arrays name syntax (introduction of [] notation).
+ 
 **0.1.1** - 29 Sep 2014 
 
 - Improved usage documentation.
