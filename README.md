@@ -11,8 +11,17 @@ This project was created to simplify the integration of our jQuery enabled websi
 
 - [jQuery](http://jquery.com/) (tested with jquery-1.11.1.min.js)
 - [json2](https://github.com/douglascrockford/JSON-js) polyfill for use in IE < 8.
+
+### Why to use this library:
+- It uses jQuery.serializeArray() to get form data in JSON format, so all W3C rules are followed and serialization works in any browser.
+- The JSON returned by jQuery.serializeArray() (which is flat) is manipulated to support nested objects.
+- It is compatible with most common REST webservice frameworks that consumes and produces JSON.
+- It is very small (minified version has only **1.25 kb**)
+- It is fully tested with jasmine and has **100%** of unit test coverage. (see [istambul report](http://alexandrefvb.github.io/jquery-json-form-functions/0.2.0/report/index.html))
   
 ### Usage:
+
+[Click here to play with an example page](http://alexandrefvb.github.io/jquery-json-form-functions/0.2.0/example.html)
 
 #####Import script on html (after jquery script):
 ```html
