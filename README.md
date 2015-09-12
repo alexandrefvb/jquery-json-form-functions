@@ -54,7 +54,7 @@ $(form-selector).putJson().done(doneHandler).fail(failHandler);
   - Arrays of values can be created using the notation "[]" on name attribute.
   - To create arrays of objects indexes must be used to determine which object of list will hold input value.
   - Inputs with empty values are ommitted on JSON.
-  - For checkboxes and radio buttons just "checked" values are added to JSON.
+  - For checkboxes and radio buttons only "checked" values are added to JSON.
     
 
 ### Full example:
