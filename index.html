@@ -32,7 +32,7 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h1>
-<a name="jquery-json-form-functions" class="anchor" href="#jquery-json-form-functions"><span class="octicon octicon-link"></span></a>jquery-json-form-functions</h1>
+<a id="jquery-json-form-functions" class="anchor" href="#jquery-json-form-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>jquery-json-form-functions</h1>
 
 <p>An extension of jQuery with functions that simplifies JSON ajax requests using html forms.</p>
 
@@ -41,15 +41,17 @@
 <p>This project was created to simplify the integration of our jQuery enabled websites to consume REST webservices developed with Spring MVC, but can be used with any webservice that consumes JSON on request body and produces JSON on response body.  </p>
 
 <h3>
-<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h3>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies</h3>
 
 <ul>
 <li>
 <a href="http://jquery.com/">jQuery</a> (tested with jquery-1.11.1.min.js)</li>
 <li>
 <a href="https://github.com/douglascrockford/JSON-js">json2</a> polyfill for use in IE &lt; 8.</li>
-</ul><h3>
-<a name="why-to-use-this-library" class="anchor" href="#why-to-use-this-library"><span class="octicon octicon-link"></span></a>Why to use this library:</h3>
+</ul>
+
+<h3>
+<a id="why-to-use-this-library" class="anchor" href="#why-to-use-this-library" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why to use this library:</h3>
 
 <ul>
 <li>It uses jQuery.serializeArray() to get form data in JSON format, so all W3C rules are followed and serialization works in any browser.</li>
@@ -57,38 +59,38 @@
 <li>It is compatible with most common REST webservice frameworks that consumes and produces JSON.</li>
 <li>It is very small (minified version has only <strong>1 kb</strong>)</li>
 <li>It is fully tested with jasmine and has <strong>100%</strong> of unit test coverage. (see <a href="http://alexandrefvb.github.io/jquery-json-form-functions/0.2.0/report/index.html">istambul report</a>)</li>
-</ul><h3>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage:</h3>
+</ul>
+
+<h3>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage:</h3>
 
 <p><a href="http://alexandrefvb.github.io/jquery-json-form-functions/0.2.0/example.html">Click here to play with an example page</a></p>
 
 <h5>
-<a name="import-script-on-html-after-jquery-script" class="anchor" href="#import-script-on-html-after-jquery-script"><span class="octicon octicon-link"></span></a>Import script on html (after jquery script):</h5>
+<a id="import-script-on-html-after-jquery-script" class="anchor" href="#import-script-on-html-after-jquery-script" aria-hidden="true"><span class="octicon octicon-link"></span></a>Import script on html (after jquery script):</h5>
 
-<div class="highlight highlight-html"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://code.jquery.com/jquery-1.11.1.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"jquery-json-form-functions-0.2.0.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-</pre></div>
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://code.jquery.com/jquery-1.11.1.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>jquery-json-form-functions-0.2.0.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
 
 <h5>
-<a name="use-jquery-selector-to-select-form-and-call-library-methods" class="anchor" href="#use-jquery-selector-to-select-form-and-call-library-methods"><span class="octicon octicon-link"></span></a>Use jQuery selector to select form and call library methods:</h5>
+<a id="use-jquery-selector-to-select-form-and-call-library-methods" class="anchor" href="#use-jquery-selector-to-select-form-and-call-library-methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use jQuery selector to select form and call library methods:</h5>
 
-<div class="highlight highlight-javascript"><pre><span class="c1">// returns form data converted to json based on input names.</span>
-<span class="nx">$</span><span class="p">(</span><span class="nx">form</span><span class="o">-</span><span class="nx">selector</span><span class="p">).</span><span class="nx">toJson</span><span class="p">();</span> 
+<div class="highlight highlight-javascript"><pre><span class="pl-c">// returns form data converted to json based on input names.</span>
+$(form<span class="pl-k">-</span>selector).toJson(); 
 
-<span class="c1">// converts form data to JSON based on input names and do a POST  </span>
-<span class="c1">// ajax request to the url configured in action form attribute. </span>
-<span class="c1">// The return will be the jQuery ajax promise.</span>
-<span class="nx">$</span><span class="p">(</span><span class="nx">form</span><span class="o">-</span><span class="nx">selector</span><span class="p">).</span><span class="nx">postJson</span><span class="p">().</span><span class="nx">done</span><span class="p">(</span><span class="nx">doneHandler</span><span class="p">).</span><span class="nx">fail</span><span class="p">(</span><span class="nx">failHandler</span><span class="p">);</span>
+<span class="pl-c">// converts form data to JSON based on input names and do a POST  </span>
+<span class="pl-c">// ajax request to the url configured in action form attribute. </span>
+<span class="pl-c">// The return will be the jQuery ajax promise.</span>
+$(form<span class="pl-k">-</span>selector).postJson().done(doneHandler).fail(failHandler);
 
 
-<span class="c1">// converts form data to JSON based on input names and do a PUT  </span>
-<span class="c1">// ajax request to the url configured in action form attribute. </span>
-<span class="c1">// The return will be the jQuery ajax promise.</span>
-<span class="nx">$</span><span class="p">(</span><span class="nx">form</span><span class="o">-</span><span class="nx">selector</span><span class="p">).</span><span class="nx">putJson</span><span class="p">().</span><span class="nx">done</span><span class="p">(</span><span class="nx">doneHandler</span><span class="p">).</span><span class="nx">fail</span><span class="p">(</span><span class="nx">failHandler</span><span class="p">);</span>
-</pre></div>
+<span class="pl-c">// converts form data to JSON based on input names and do a PUT  </span>
+<span class="pl-c">// ajax request to the url configured in action form attribute. </span>
+<span class="pl-c">// The return will be the jQuery ajax promise.</span>
+$(form<span class="pl-k">-</span>selector).putJson().done(doneHandler).fail(failHandler);</pre></div>
 
 <h3>
-<a name="conversion-rules" class="anchor" href="#conversion-rules"><span class="octicon octicon-link"></span></a>Conversion rules:</h3>
+<a id="conversion-rules" class="anchor" href="#conversion-rules" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conversion rules:</h3>
 
 <ul>
 <li>All inputs on form that have a name attribute will be added to the JSON.</li>
@@ -97,113 +99,109 @@
 <li>Arrays of values can be created using the notation "[]" on name attribute.</li>
 <li>To create arrays of objects indexes must be used to determine which object of list will hold input value.</li>
 <li>Inputs with empty values are ommitted on JSON.</li>
-<li>For checkboxes and radio buttons just "checked" values are added to JSON.</li>
-</ul><h3>
-<a name="full-example" class="anchor" href="#full-example"><span class="octicon octicon-link"></span></a>Full example:</h3>
+<li>For checkboxes and radio buttons only "checked" values are added to JSON.</li>
+</ul>
+
+<h3>
+<a id="full-example" class="anchor" href="#full-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Full example:</h3>
 
 <h5>
-<a name="html-form" class="anchor" href="#html-form"><span class="octicon octicon-link"></span></a>HTML form:</h5>
+<a id="html-form" class="anchor" href="#html-form" aria-hidden="true"><span class="octicon octicon-link"></span></a>HTML form:</h5>
 
-<div class="highlight highlight-html"><pre><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"aForm"</span> <span class="na">action=</span><span class="s">"http://some-service-url"</span><span class="nt">&gt;</span>   
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"simpleAttribute"</span> <span class="na">value=</span><span class="s">"123"</span><span class="nt">/&gt;</span>
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">form</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>aForm<span class="pl-pds">"</span></span> <span class="pl-e">action</span>=<span class="pl-s"><span class="pl-pds">"</span>http://some-service-url<span class="pl-pds">"</span></span>&gt;   
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>simpleAttribute<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>123<span class="pl-pds">"</span></span>/&gt;
 
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"arrayAttribute[]"</span> <span class="na">value=</span><span class="s">"a"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"arrayAttribute[]"</span> <span class="na">value=</span><span class="s">"b"</span><span class="nt">/&gt;</span>
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>arrayAttribute[]<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>a<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>arrayAttribute[]<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>b<span class="pl-pds">"</span></span>/&gt;
 
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"object.simpleAtrtribute"</span> <span class="na">value=</span><span class="s">"456"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"object.arrayAttribute[]"</span> <span class="na">value=</span><span class="s">"c"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"object.arrayAttribute[]"</span> <span class="na">value=</span><span class="s">"d"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"object.nestedObject.simpleAtrtribute"</span> <span class="na">value=</span><span class="s">"789"</span><span class="nt">/&gt;</span>  
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"object.nestedObject.arrayAttribute[]"</span> <span class="na">value=</span><span class="s">"e"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"object.nestedObject.arrayAttribute[]"</span> <span class="na">value=</span><span class="s">"f"</span><span class="nt">/&gt;</span>
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>object.simpleAtrtribute<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>456<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>object.arrayAttribute[]<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>c<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>object.arrayAttribute[]<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>d<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>object.nestedObject.simpleAtrtribute<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>789<span class="pl-pds">"</span></span>/&gt;  
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>object.nestedObject.arrayAttribute[]<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>e<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>object.nestedObject.arrayAttribute[]<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>f<span class="pl-pds">"</span></span>/&gt;
 
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"objectList[0].simpleAtrtribute"</span> <span class="na">value=</span><span class="s">"101112"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"objectList[0].arrayAttribute[]"</span> <span class="na">value=</span><span class="s">"g"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"objectList[0].arrayAttribute[]"</span> <span class="na">value=</span><span class="s">"h"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"objectList[1].simpleAtrtribute"</span> <span class="na">value=</span><span class="s">"131515"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"objectList[1].arrayAttribute[]"</span> <span class="na">value=</span><span class="s">"i"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"objectList[1].arrayAttribute[]"</span> <span class="na">value=</span><span class="s">"j"</span><span class="nt">/&gt;</span>
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>objectList[0].simpleAtrtribute<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>101112<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>objectList[0].arrayAttribute[]<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>g<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>objectList[0].arrayAttribute[]<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>h<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>objectList[1].simpleAtrtribute<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>131515<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>objectList[1].arrayAttribute[]<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>i<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>objectList[1].arrayAttribute[]<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>j<span class="pl-pds">"</span></span>/&gt;
 
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"ignoredAttribute"</span> <span class="na">value=</span><span class="s">""</span><span class="nt">/&gt;</span>
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>ignoredAttribute<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>/&gt;
 
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"singleValueArrayAttribute[]"</span> <span class="na">value=</span><span class="s">"x"</span><span class="nt">/&gt;</span>
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>singleValueArrayAttribute[]<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span>/&gt;
 
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"checkboxField[]"</span> <span class="na">value=</span><span class="s">"Value 1"</span> <span class="na">checked=</span><span class="s">"checked"</span><span class="nt">/&gt;</span> 
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"checkboxField[]"</span> <span class="na">value=</span><span class="s">"Value 2"</span> <span class="nt">/&gt;</span> 
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"checkboxField[]"</span> <span class="na">value=</span><span class="s">"Value 3"</span> <span class="nt">/&gt;</span>
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>checkbox<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>checkboxField[]<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>Value 1<span class="pl-pds">"</span></span> <span class="pl-e">checked</span>=<span class="pl-s"><span class="pl-pds">"</span>checked<span class="pl-pds">"</span></span>/&gt; 
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>checkbox<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>checkboxField[]<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>Value 2<span class="pl-pds">"</span></span> /&gt; 
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>checkbox<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>checkboxField[]<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>Value 3<span class="pl-pds">"</span></span> /&gt;
 
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"radioField"</span> <span class="na">value=</span><span class="s">"Value 1"</span> <span class="na">checked=</span><span class="s">"checked"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"radioField"</span> <span class="na">value=</span><span class="s">"Value 2"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"radioField"</span> <span class="na">value=</span><span class="s">"Value 3"</span><span class="nt">/&gt;</span> 
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>radio<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>radioField<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>Value 1<span class="pl-pds">"</span></span> <span class="pl-e">checked</span>=<span class="pl-s"><span class="pl-pds">"</span>checked<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>radio<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>radioField<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>Value 2<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>radio<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>radioField<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>Value 3<span class="pl-pds">"</span></span>/&gt; 
 
-    <span class="nt">&lt;select</span> <span class="na">name=</span><span class="s">"selectField"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"A"</span><span class="nt">&gt;</span>A<span class="nt">&lt;/option&gt;</span>
-        <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"B"</span><span class="nt">&gt;</span>B<span class="nt">&lt;/option&gt;</span>
-        <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"C"</span> <span class="na">selected=</span><span class="s">"selected"</span><span class="nt">&gt;</span>C<span class="nt">&lt;/option&gt;</span>
-    <span class="nt">&lt;/select&gt;</span>
+    &lt;<span class="pl-ent">select</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>selectField<span class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">option</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>A<span class="pl-pds">"</span></span>&gt;A&lt;/<span class="pl-ent">option</span>&gt;
+        &lt;<span class="pl-ent">option</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>B<span class="pl-pds">"</span></span>&gt;B&lt;/<span class="pl-ent">option</span>&gt;
+        &lt;<span class="pl-ent">option</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>C<span class="pl-pds">"</span></span> <span class="pl-e">selected</span>=<span class="pl-s"><span class="pl-pds">"</span>selected<span class="pl-pds">"</span></span>&gt;C&lt;/<span class="pl-ent">option</span>&gt;
+    &lt;/<span class="pl-ent">select</span>&gt;
 
-    <span class="nt">&lt;select</span> <span class="na">name=</span><span class="s">"multipleSelectField[]"</span> <span class="na">multiple=</span><span class="s">"multiple"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"A"</span> <span class="na">selected=</span><span class="s">"selected"</span><span class="nt">&gt;</span>A<span class="nt">&lt;/option&gt;</span>
-        <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"B"</span><span class="nt">&gt;</span>B<span class="nt">&lt;/option&gt;</span>
-        <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"C"</span><span class="nt">&gt;</span>C<span class="nt">&lt;/option&gt;</span>
-    <span class="nt">&lt;/select&gt;</span>        
-<span class="nt">&lt;/form&gt;</span>
-</pre></div>
+    &lt;<span class="pl-ent">select</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>multipleSelectField[]<span class="pl-pds">"</span></span> <span class="pl-e">multiple</span>=<span class="pl-s"><span class="pl-pds">"</span>multiple<span class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">option</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>A<span class="pl-pds">"</span></span> <span class="pl-e">selected</span>=<span class="pl-s"><span class="pl-pds">"</span>selected<span class="pl-pds">"</span></span>&gt;A&lt;/<span class="pl-ent">option</span>&gt;
+        &lt;<span class="pl-ent">option</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>B<span class="pl-pds">"</span></span>&gt;B&lt;/<span class="pl-ent">option</span>&gt;
+        &lt;<span class="pl-ent">option</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>C<span class="pl-pds">"</span></span>&gt;C&lt;/<span class="pl-ent">option</span>&gt;
+    &lt;/<span class="pl-ent">select</span>&gt;        
+&lt;/<span class="pl-ent">form</span>&gt;</pre></div>
 
 <h5>
-<a name="converting-to-json" class="anchor" href="#converting-to-json"><span class="octicon octicon-link"></span></a>Converting to JSON:</h5>
+<a id="converting-to-json" class="anchor" href="#converting-to-json" aria-hidden="true"><span class="octicon octicon-link"></span></a>Converting to JSON:</h5>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s2">"#aform"</span><span class="p">).</span><span class="nx">toJson</span><span class="p">();</span> 
-</pre></div>
+<div class="highlight highlight-javascript"><pre>$(<span class="pl-s"><span class="pl-pds">"</span>#aform<span class="pl-pds">"</span></span>).toJson(); </pre></div>
 
 <p>The result will be:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="p">{</span> 
-    <span class="s2">"simpleAttribute"</span><span class="o">:</span> <span class="s2">"123"</span><span class="p">,</span>
-    <span class="s2">"arrayAttribute"</span><span class="o">:</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">],</span>
-    <span class="s2">"object"</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">"simpleAttribute"</span><span class="o">:</span> <span class="s2">"456"</span><span class="p">,</span>
-        <span class="s2">"arrayAttribute"</span><span class="o">:</span> <span class="p">[</span><span class="s2">"c"</span><span class="p">,</span> <span class="s2">"d"</span><span class="p">],</span>
-        <span class="s2">"nestedObject"</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">"simpleAttribute"</span><span class="o">:</span> <span class="s2">"789"</span><span class="p">,</span>
-            <span class="s2">"arrayAttribute"</span><span class="o">:</span> <span class="p">[</span><span class="s2">"e"</span><span class="p">,</span> <span class="s2">"f"</span><span class="p">]</span>
-        <span class="p">}</span> 
-    <span class="p">}</span>
-    <span class="s2">"objectList"</span><span class="o">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="s2">"simpleAttribute"</span><span class="o">:</span> <span class="s2">"101112"</span><span class="p">,</span>
-            <span class="s2">"arrayAttribute"</span><span class="o">:</span> <span class="p">[</span><span class="s2">"g"</span><span class="p">,</span> <span class="s2">"h"</span><span class="p">],</span>
-        <span class="p">},</span>  
-        <span class="p">{</span>
-            <span class="s2">"simpleAttribute"</span><span class="o">:</span> <span class="s2">"131515"</span><span class="p">,</span>
-            <span class="s2">"arrayAttribute"</span><span class="o">:</span> <span class="p">[</span><span class="s2">"i"</span><span class="p">,</span> <span class="s2">"j"</span><span class="p">],</span>
-        <span class="p">}</span>  
-    <span class="p">],</span>
-    <span class="s2">"singleValueArrayAttribute"</span><span class="o">:</span> <span class="p">[</span><span class="s2">"x"</span><span class="p">],</span>
-    <span class="s2">"checkboxField"</span><span class="o">:</span> <span class="p">[</span><span class="s2">"Value 1"</span><span class="p">],</span>
-    <span class="s2">"radioField"</span><span class="o">:</span> <span class="s2">"Value 1"</span><span class="p">,</span>
-    <span class="s2">"selectField"</span><span class="o">:</span> <span class="s2">"C"</span><span class="p">,</span>
-    <span class="s2">"multipleSelectField"</span><span class="o">:</span> <span class="p">[</span> <span class="s2">"A"</span> <span class="p">]</span>          
-<span class="p">}</span>
-</pre></div>
+<div class="highlight highlight-javascript"><pre>{ 
+    <span class="pl-s"><span class="pl-pds">"</span>simpleAttribute<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>123<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>arrayAttribute<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">"</span>a<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>b<span class="pl-pds">"</span></span>],
+    <span class="pl-s"><span class="pl-pds">"</span>object<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s"><span class="pl-pds">"</span>simpleAttribute<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>456<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>arrayAttribute<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">"</span>c<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>d<span class="pl-pds">"</span></span>],
+        <span class="pl-s"><span class="pl-pds">"</span>nestedObject<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+            <span class="pl-s"><span class="pl-pds">"</span>simpleAttribute<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>789<span class="pl-pds">"</span></span>,
+            <span class="pl-s"><span class="pl-pds">"</span>arrayAttribute<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">"</span>e<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>f<span class="pl-pds">"</span></span>]
+        } 
+    }
+    <span class="pl-s"><span class="pl-pds">"</span>objectList<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+        {
+            <span class="pl-s"><span class="pl-pds">"</span>simpleAttribute<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>101112<span class="pl-pds">"</span></span>,
+            <span class="pl-s"><span class="pl-pds">"</span>arrayAttribute<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">"</span>g<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>h<span class="pl-pds">"</span></span>],
+        },  
+        {
+            <span class="pl-s"><span class="pl-pds">"</span>simpleAttribute<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>131515<span class="pl-pds">"</span></span>,
+            <span class="pl-s"><span class="pl-pds">"</span>arrayAttribute<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">"</span>i<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>j<span class="pl-pds">"</span></span>],
+        }  
+    ],
+    <span class="pl-s"><span class="pl-pds">"</span>singleValueArrayAttribute<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span>],
+    <span class="pl-s"><span class="pl-pds">"</span>checkboxField<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">"</span>Value 1<span class="pl-pds">"</span></span>],
+    <span class="pl-s"><span class="pl-pds">"</span>radioField<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Value 1<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>selectField<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>C<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>multipleSelectField<span class="pl-pds">"</span></span><span class="pl-k">:</span> [ <span class="pl-s"><span class="pl-pds">"</span>A<span class="pl-pds">"</span></span> ]          
+}</pre></div>
 
 <h5>
-<a name="post-json-to-action-url" class="anchor" href="#post-json-to-action-url"><span class="octicon octicon-link"></span></a>POST JSON to action url:</h5>
+<a id="post-json-to-action-url" class="anchor" href="#post-json-to-action-url" aria-hidden="true"><span class="octicon octicon-link"></span></a>POST JSON to action url:</h5>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s2">"#aform"</span><span class="p">).</span><span class="nx">postJson</span><span class="p">();</span>
-</pre></div>
+<div class="highlight highlight-javascript"><pre>$(<span class="pl-s"><span class="pl-pds">"</span>#aform<span class="pl-pds">"</span></span>).postJson();</pre></div>
 
 <h5>
-<a name="put-json-to-action-url" class="anchor" href="#put-json-to-action-url"><span class="octicon octicon-link"></span></a>PUT JSON to action url:</h5>
+<a id="put-json-to-action-url" class="anchor" href="#put-json-to-action-url" aria-hidden="true"><span class="octicon octicon-link"></span></a>PUT JSON to action url:</h5>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s2">"#aform"</span><span class="p">).</span><span class="nx">putJson</span><span class="p">();</span>
-</pre></div>
+<div class="highlight highlight-javascript"><pre>$(<span class="pl-s"><span class="pl-pds">"</span>#aform<span class="pl-pds">"</span></span>).putJson();</pre></div>
 
 <h3>
-<a name="how-to-build-latest-stable-version-from-source" class="anchor" href="#how-to-build-latest-stable-version-from-source"><span class="octicon octicon-link"></span></a>How to build latest stable version from source:</h3>
+<a id="how-to-build-latest-stable-version-from-source" class="anchor" href="#how-to-build-latest-stable-version-from-source" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to build latest stable version from source:</h3>
 
-<p>
-Lastest production release is allways on master branch.</p>
+<p>Lastest production release is allways on master branch.</p>
 
 <p>You will need git, node.js and grunt to build it from the source:</p>
 
@@ -221,8 +219,10 @@ $ grunt
 
 <p><strong>jquery-json-form-functions/dist/0.2.0/example.html</strong></p>
 
-<hr><h6>
-<a name="version-history" class="anchor" href="#version-history"><span class="octicon octicon-link"></span></a>Version history</h6>
+<hr>
+
+<h6>
+<a id="version-history" class="anchor" href="#version-history" aria-hidden="true"><span class="octicon octicon-link"></span></a>Version history</h6>
 
 <p><strong>0.2.0</strong> - 30 Sep 2014</p>
 
@@ -230,13 +230,17 @@ $ grunt
 <li>Syntax highlight on documentation.</li>
 <li>Change of simple arrays name syntax (introduction of [] notation).</li>
 <li>Example page scrolls to show toJson() result.</li>
-</ul><p><strong>0.1.1</strong> - 29 Sep 2014 </p>
+</ul>
+
+<p><strong>0.1.1</strong> - 29 Sep 2014 </p>
 
 <ul>
 <li>Improved usage documentation.</li>
 <li>Added build information to project documentation.</li>
 <li>Added dependencies information to project documentation.</li>
-</ul><p><strong>0.1.0</strong> - 29 Sep 2014 </p>
+</ul>
+
+<p><strong>0.1.0</strong> - 29 Sep 2014 </p>
 
 <ul>
 <li>Initial release with fully tested code (using jasmine).</li>
@@ -248,7 +252,7 @@ $ grunt
     <div id="footer_wrap" class="outer">
       <footer class="inner">
         <p class="copyright">jquery-json-form-functions maintained by <a href="https://github.com/alexandrefvb">alexandrefvb</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
 
